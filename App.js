@@ -57,9 +57,9 @@ export default function App() {
             initialRegion={region}
             onPress={handleMapPress}
           >
-            {/* OpenStreetMap Tile */}
+            {/* OpenStreetMap Tile (using a mirror to avoid 403 Forbidden error) */}
             <UrlTile
-              urlTemplate="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+              urlTemplate="https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png"
               maximumZ={19}
             />
 
@@ -75,6 +75,9 @@ export default function App() {
           <View style={styles.info}>
             <Text style={styles.text}>Latitude: {location.latitude.toFixed(6)}</Text>
             <Text style={styles.text}>Longitude: {location.longitude.toFixed(6)}</Text>
+            <Text style={styles.attribution}>
+              © OpenStreetMap contributors
+            </Text>
 
             <Button title="Refresh Location" onPress={getlocation} />
           </View>
@@ -105,5 +108,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     marginBottom: 8,
+  },
+  attribution: {
+    fontSize: 12,
+    color: "#666",
+    marginBottom: 16,
+    fontStyle: "italic",
   },
 });
